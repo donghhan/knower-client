@@ -1,25 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { HelmetProvider } from "react-helmet-async";
+import { createGlobalStyle } from "styled-components";
+import Router from "./Router";
+
+const GlobalStyles = createGlobalStyle`
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Noto Serif KR', serif;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme.colors.black};
+  }
+
+  ul, li {
+    list-style: none;
+  }
+
+  input {
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      font-family: 'Noto Serif KR', serif;
+    }
+  }
+
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Serif KR', serif;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HelmetProvider>
+      <GlobalStyles />
+      <Router />
+    </HelmetProvider>
   );
 }
 
