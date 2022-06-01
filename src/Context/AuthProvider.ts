@@ -1,21 +1,43 @@
-import React, { createContext, useState } from "react";
+import React from "react";
 
 interface AuthContextType {
   user: any;
-  login: (user: string, callback: () => void) => void;
-  logout: (callback: () => void) => void;
+  signin: (user: string, callback: VoidFunction) => void;
+  signout: (callback: VoidFunction) => void;
 }
 
-interface IAuthProvider {
-  children: React.ReactNode;
-}
+export let AuthContext = React.createContext<AuthContextType>(null!);
 
-const AuthContext = createContext<AuthContextType>();
+// const fakeAuthProvider = {
+//   isAuthenticated: false,
+//   signin(callback: VoidFunction) {
+//     fakeAuthProvider.isAuthenticated = true;
+//     setTimeout(callback, 100); // fake async
+//   },
+//   signout(callback: VoidFunction) {
+//     fakeAuthProvider.isAuthenticated = false;
+//     setTimeout(callback, 100);
+//   },
+// };
 
-export function AuthProvider({ children }: IAuthProvider) {
-  const [auth, setAuth] = useState({});
+// function AuthProvider({ children }: { children: React.ReactNode }) {
+//   let [user, setUser] = React.useState<any>(null);
 
-  return <AuthContext.provider></AuthContext.provider>;
-}
+//   let signin = (newUser: string, callback: VoidFunction) => {
+//     return fakeAuthProvider.signin(() => {
+//       setUser(newUser);
+//       callback();
+//     });
+//   };
 
-export default AuthContext;
+//   let signout = (callback: VoidFunction) => {
+//     return fakeAuthProvider.signout(() => {
+//       setUser(null);
+//       callback();
+//     });
+//   };
+
+//   let value = { user, signin, signout };
+
+//   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+// }

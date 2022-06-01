@@ -22,12 +22,3 @@ export default function Login() {
     </form>
   );
 }
-
-function AuthStauts() {
-  let auth = useAuth();
-  let navigate = useNavigate();
-
-  if (!auth.user) {
-    return <p>You are not logged in.</p>;
-  }
-}

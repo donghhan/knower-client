@@ -1,7 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
 const theme: DefaultTheme = {
-  fonts: {},
+  fonts: "'Noto Serif KR', serif;",
   colors: {
     black: "#000",
   },
