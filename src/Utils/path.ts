@@ -5,4 +5,7 @@ export enum Path {
 
   // Products
   ProductByCategory = `/products/:id`,
+
+  // Users
+  MyProfile = "/my-profile",
 }
