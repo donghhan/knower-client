@@ -6,16 +6,16 @@ import {
   useLocation,
   Location,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCurrentToken } from "./features/auth/authSlice";
 import { Path } from "./Utils/path";
-// Custom Hook
-import useAuth from "./Hooks/Auth/useAuth";
 // Pages
-import Login from "./Pages/Auth/Login";
+import LoginPage from "./features/auth/LoginPage";
 import Signup from "./Pages/Auth/Signup";
 import Home from "./Pages/Home";
 import MyProfile from "./Pages/User/MyProfile";
 // Components
-import Container from "./Components/Container";
+import Layout from "./Components/Layout";
 import Navbar from "./Components/Navbar";
 import ProductByCategory from "./Pages/Products/ProductCategory";
 
@@ -24,26 +24,28 @@ export default function Router() {
     <>
       <Navbar />
       <Routes>
-        <Route path={Path.Home} element={<Container />} />
-        {/* Public Routes */}
+        <Route path={Path.Home} element={<Layout />}>
+          {/* Public Routes */}
+          <Route path={Path.Login} element={<LoginPage />} />
 
-        {/* Protected Routes */}
-        <Route element={<RequireAuth />}>
-          <Route path={Path.MyProfile} element={<MyProfile />} />
+          {/* Protected Routes */}
+          <Route element={<RequireAuth />}>
+            <Route path={Path.MyProfile} element={<MyProfile />} />
+          </Route>
+
+          {/* Invalid routes redirection */}
+          <Route path="*" element={<Navigate to={Path.Home} replace />} />
         </Route>
-
-        {/* Invalid routes redirection */}
-        <Route path="*" element={<Navigate to={Path.Home} replace />} />
       </Routes>
     </>
   );
 }
 
 function RequireAuth() {
-  const auth = useAuth();
-  const location: Location = useLocation();
+  const token = useSelector(selectCurrentToken);
+  const location = useLocation();
 
-  return auth?.user ? (
+  return token ? (
     <Outlet />
   ) : (
     <Navigate to={Path.Login} state={{ from: location }} replace />

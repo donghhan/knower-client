@@ -1,46 +1,8 @@
 import { HelmetProvider } from "react-helmet-async";
-import { createGlobalStyle } from "styled-components";
 import Router from "./Router";
+import { GlobalStyles } from "./theme";
 
-const GlobalStyles = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Noto Serif KR', serif;
-  }
-
-  a {
-    text-decoration: none;
-    color: ${(props) => props.theme.colors.black};
-  }
-
-  ul, li {
-    list-style: none;
-  }
-
-  input {
-    &:focus {
-      outline: none;
-    }
-
-    &::placeholder {
-      font-family: 'Noto Serif KR', serif;
-    }
-  }
-
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Noto Serif KR', serif;
-  }
-`;
-
-function App() {
+export default function App() {
   return (
     <HelmetProvider>
       <GlobalStyles />
@@ -48,5 +10,3 @@ function App() {
     </HelmetProvider>
   );
 }
-
-export default App;
