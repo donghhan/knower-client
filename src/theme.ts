@@ -28,6 +28,10 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   input {
+    border: none;
+    border-bottom: 1px solid ${(props) => props.theme.colors.black};
+    font-size: 1.25rem;
+
     &:focus {
       outline: none;
     }

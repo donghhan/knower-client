@@ -1,15 +1,29 @@
-import React, { useEffect, useState, useRef, ChangeEvent } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
 import { Path } from "../../Utils/path";
+import styled from "styled-components";
+import Container from "../../Components/auth/Container";
 
 export default function LoginPage() {
   const [email, setEmail] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+    setError,
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
   const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
@@ -18,7 +32,7 @@ export default function LoginPage() {
     setErrorMessage("");
   }, [email, password]);
 
-  const handleSubmit = async (e: React.SyntheticEvent) => {
+  const formSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     try {
@@ -43,32 +57,60 @@ export default function LoginPage() {
   };
 
   return (
-    <>
-      <h1>This is Login Page</h1>
-      <p>{errorMessage}</p>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          required
-          value={email}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setEmail(e.target.value)
-          }
-          name="email"
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          required
-          value={password}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setPassword(e.target.value)
-          }
-          name="password"
-        />
-        <button>Login</button>
-      </form>
-    </>
+    <Container>
+      <SectionWrapper>
+        <Title>Please login</Title>
+        <p>{errorMessage}</p>
+        <LoginForm onSubmit={formSubmit}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            {...register("email", {
+              required: "Please write your email address.",
+              pattern: {
+                value:
+                  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: "This is not a valid format of email address.",
+              },
+            })}
+          />
+          {errors?.email && <p>{errors?.email?.message}</p>}
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
+            name="password"
+          />
+          <button>Login</button>
+        </LoginForm>
+      </SectionWrapper>
+    </Container>
   );
 }
+
+const SectionWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Title = styled.h1`
+  font-size: 2.5rem;
+  margin-bottom: 1em;
+`;
+
+const LoginForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+
+  label {
+    margin-bottom: 1em;
+
+    &:nth-of-type(2) {
+      margin-top: 1.5em;
+    }
+  }
+`;

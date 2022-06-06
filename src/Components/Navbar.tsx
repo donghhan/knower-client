@@ -10,19 +10,19 @@ export default function Navbar() {
       <Nav>
         <ul>
           <li>
-            <Link to={Path.ProductByCategory}>Tops</Link>
+            <Menu to={Path.ProductByCategory}>Tops</Menu>
           </li>
           <li>
-            <Link to={Path.ProductByCategory}>Bottom</Link>
+            <Menu to={Path.ProductByCategory}>Bottom</Menu>
           </li>
         </ul>
         <Logo to={Path.Home}>Knower</Logo>
         <ul>
           <li>
-            <Link to={Path.ProductByCategory}>Login</Link>
+            <Menu to={Path.Login}>Login</Menu>
           </li>
           <li>
-            <Link to={Path.ProductByCategory}>Carts</Link>
+            <Menu to={Path.ProductByCategory}>Carts</Menu>
           </li>
         </ul>
       </Nav>
@@ -37,6 +37,9 @@ const Header = styled.header`
   padding: 0 2rem;
   border: 1px solid red;
   font-family: ${(props) => props.theme.fonts};
+  position: fixed;
+  top: 0;
+  left: 0;
 `;
 
 const Nav = styled.nav`
@@ -56,4 +59,32 @@ const Nav = styled.nav`
   }
 `;
 
-const Logo = styled(Link)``;
+const Logo = styled(Link)`
+  font-size: 3rem;
+`;
+
+const Menu = styled(Link)`
+  display: inline-block;
+  position: relative;
+  color: ${(props) => props.theme.colors.black};
+
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -0.15rem;
+    left: 0;
+    width: 100%;
+    height: 0.1rem;
+    background-color: ${(props) => props.theme.colors.black};
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  &:hover {
+    &:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+`;
