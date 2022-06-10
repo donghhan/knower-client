@@ -4,6 +4,7 @@ export const theme: DefaultTheme = {
   fonts: "'Noto Serif KR', serif;",
   colors: {
     black: "#000",
+    white: "#fff",
   },
 };
 
@@ -39,6 +40,10 @@ export const GlobalStyles = createGlobalStyle`
     &::placeholder {
       font-family: 'Noto Serif KR', serif;
     }
+  }
+
+  span {
+    display: inline-block;
   }
 
   button {

@@ -2,8 +2,6 @@ import React, { useEffect, useState, ChangeEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FieldErrors, useForm } from "react-hook-form";
-import { setCredentials } from "./authSlice";
-import { useLoginMutation } from "./authApiSlice";
 import { Path } from "../../Utils/path";
 import styled from "styled-components";
 import Container from "../../Components/auth/Container";
@@ -22,55 +20,12 @@ export default function LoginPage() {
     reset,
   } = useForm<ILoginForm>();
 
-  const [login, { isLoading }] = useLoginMutation();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    setErrorMessage("");
-  }, [email, password]);
-
-  const valid = async (e: React.SyntheticEvent) => {
-    e.preventDefault();
-
-    try {
-      const userData = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...userData, email }));
-      setEmail("");
-      setPassword("");
-      navigate(Path.Home);
-    } catch (err: any) {
-      if (!err?.response) {
-        setErrorMessage("서버가 응답하지 않습니다.");
-      } else if (err?.response?.status === 400) {
-        setErrorMessage("올바른 이메일 주소와 비밀번호를 입력해주세요.");
-      } else if (err?.response?.status === 401) {
-        setErrorMessage("접근 권한이 없습니다.");
-      } else {
-        setErrorMessage(
-          "알 수 없는 오류가 발생하였습니다. 잠시 후 다시 이용해주세요."
-        );
-      }
-    }
-  };
-
-  const onFormSubmitValid = async (data: ILoginForm) => {
-    const userData = await login({ email, password }).unwrap();
-    dispatch(setCredentials({ ...userData, email, password }));
-    navigate(Path.Home);
-    console.log(userData);
-  };
-
-  const onInvalid = (err: any) => {
-    err.response &&
-      setErrorMessage("알 수 없는 오류가 발생했습니다. 잠시만 다시 ");
-  };
-
   return (
     <Container>
       <SectionWrapper>
         <Title>Login</Title>
         <p>{errorMessage}</p>
-        <LoginForm onSubmit={handleSubmit(onFormSubmitValid)}>
+        <LoginForm>
           <label htmlFor="email">Email</label>
           <input
             type="email"

@@ -10,7 +10,6 @@ export default function Layout() {
 }
 
 const Container = styled.div`
-  padding-top: 5rem;
   width: 100%;
   height: fit-content;
   min-height: 100vh;
