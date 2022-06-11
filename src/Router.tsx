@@ -28,6 +28,7 @@ export default function Router() {
           <Route path={Path.Login} element={<LoginPage />} />
           <Route path={Path.Home} element={<Home />} />
 
+          {/* Protected Routes */}
           <Route path={Path.MyProfile} element={<MyProfile />} />
 
           {/* Invalid routes redirection */}

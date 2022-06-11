@@ -6,6 +6,11 @@ export const theme: DefaultTheme = {
     black: "#000",
     white: "#fff",
   },
+  responsive: {
+    mobile: "(max-width: 375px)",
+    tablet: "(min-width: 376px) and (max-width: 1024px)",
+    desktop: "(min-width: 1025px)",
+  },
 };
 
 export const GlobalStyles = createGlobalStyle`

@@ -1,16 +1,21 @@
+import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Layout() {
+interface ILayout {
+  children?: React.ReactNode;
+}
+
+export default function Layout({ children }: ILayout) {
   return (
     <Container>
+      {children}
       <Outlet />
     </Container>
   );
 }
 
-const Container = styled.div`
+const Container = styled.main`
   width: 100%;
-  height: fit-content;
   min-height: 100vh;
 `;

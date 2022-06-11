@@ -7,5 +7,10 @@ declare module "styled-components" {
       black: string;
       white: string;
     };
+    responsive: {
+      mobile: string;
+      tablet: string;
+      desktop: string;
+    };
   }
 }

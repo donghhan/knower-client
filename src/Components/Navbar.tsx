@@ -23,7 +23,7 @@ export default function Navbar() {
             <Menu to={Path.Login}>Login</Menu>
           </li>
           <li>
-            <Menu to={Path.ProductByCategory}>Carts</Menu>
+            <Menu to={Path.ProductByCategory}>Carts (0)</Menu>
           </li>
         </ul>
       </Nav>
@@ -56,7 +56,7 @@ const Nav = styled.nav`
 
     li {
       margin: 0 3rem;
-      font-size: 1.05rem;
+      font-size: 0.9rem;
     }
   }
 
