@@ -2,15 +2,13 @@ import styled from "styled-components";
 import image1 from "../static/images/image1.png";
 import { Link } from "react-router-dom";
 // Components
-import { device } from "../Utils/responsive";
-import BestSeller from "./Products/BestSeller";
 import { Path } from "../Utils/path";
 
 export default function Home() {
   return (
     <HomeSection>
       <IntroTitle>Beauty from Minimalism</IntroTitle>
-      <LearnMoreLink to={Path.Home}>Learn More</LearnMoreLink>
+      <LearnMoreLink to={Path.Home}>About Us</LearnMoreLink>
     </HomeSection>
   );
 }

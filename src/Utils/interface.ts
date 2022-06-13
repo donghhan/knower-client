@@ -1,3 +1,9 @@
+import React from "react";
+
+export interface IChildren {
+  children: React.ReactNode;
+}
+
 export interface IUser {
   email: string;
   firstName: string;

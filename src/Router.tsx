@@ -1,12 +1,4 @@
-import {
-  Routes,
-  Route,
-  Navigate,
-  Outlet,
-  useLocation,
-  Location,
-} from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Path } from "./Utils/path";
 // Pages
 import LoginPage from "./Pages/Auth/LoginPage";
@@ -16,7 +8,6 @@ import MyProfile from "./Pages/User/MyProfile";
 // Components
 import Layout from "./Components/Layout";
 import Navbar from "./Components/Navbar";
-import ProductByCategory from "./Pages/Products/ProductCategory";
 
 export default function Router() {
   return (
@@ -27,6 +18,7 @@ export default function Router() {
           {/* Public Routes */}
           <Route path={Path.Login} element={<LoginPage />} />
           <Route path={Path.Home} element={<Home />} />
+          <Route path={Path.Signup} element={<Signup />} />
 
           {/* Protected Routes */}
           <Route path={Path.MyProfile} element={<MyProfile />} />

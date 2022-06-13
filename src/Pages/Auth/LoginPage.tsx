@@ -1,13 +1,17 @@
-import React, { useEffect, useState, ChangeEvent } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FieldErrors, useForm } from "react-hook-form";
 import { Path } from "../../Utils/path";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Container from "../../Components/auth/Container";
 import { ILoginForm } from "../../Utils/interface";
 
-export default function LoginPage() {
+interface ILoginPage {
+  isModalOpen?: boolean;
+}
+
+export default function LoginPage({ isModalOpen }: ILoginPage) {
   const [email, setEmail] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -21,7 +25,7 @@ export default function LoginPage() {
   } = useForm<ILoginForm>();
 
   return (
-    <Container>
+    <LoginWrapper>
       <SectionWrapper>
         <Title>Login</Title>
         <p>{errorMessage}</p>
@@ -55,10 +59,19 @@ export default function LoginPage() {
           <button>Login</button>
         </LoginForm>
       </SectionWrapper>
-    </Container>
+    </LoginWrapper>
   );
 }
 
+const LoginWrapper = styled.main`
+  width: 100%;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+`;
 const SectionWrapper = styled.section`
   display: flex;
   flex-direction: column;

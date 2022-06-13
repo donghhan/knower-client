@@ -37,6 +37,7 @@ export const GlobalStyles = createGlobalStyle`
     border: none;
     border-bottom: 1px solid ${(props) => props.theme.colors.black};
     font-size: 1.25rem;
+    background: transparent;
 
     &:focus {
       outline: none;
@@ -56,5 +57,21 @@ export const GlobalStyles = createGlobalStyle`
     border: none;
     cursor: pointer;
     font-family: 'Noto Serif KR', serif;
+  }
+
+  .ReactModal__Overlay {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 500ms ease-in-out;
+  }
+
+  .ReactModal__Overlay--after-open {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+
+  .ReactModal__Overlay--before-close {
+    opacity: 0;
+    transform: translateX(-100px);
   }
 `;
