@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FieldErrors, useForm } from "react-hook-form";
 import { Path } from "../../Utils/path";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Container from "../../Components/auth/Container";
 import { ILoginForm } from "../../Utils/interface";
 
@@ -56,8 +56,12 @@ export default function LoginPage({ isModalOpen }: ILoginPage) {
             })}
           />
           {errors?.password && <p>{errors?.password?.message}</p>}
-          <button>Login</button>
+          <LoginButton>Login</LoginButton>
         </LoginForm>
+        <UtilWrapper>
+          <StyledLink to={Path.Signup}>Create new account</StyledLink>
+          <StyledLink to="/">Forgot password?</StyledLink>
+        </UtilWrapper>
       </SectionWrapper>
     </LoginWrapper>
   );
@@ -66,7 +70,7 @@ export default function LoginPage({ isModalOpen }: ILoginPage) {
 const LoginWrapper = styled.main`
   width: 100%;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,5 +98,23 @@ const LoginForm = styled.form`
     &:nth-of-type(2) {
       margin-top: 1.5em;
     }
+  }
+`;
+
+const LoginButton = styled.button`
+  margin-top: 1.5em;
+  font-size: 1.25rem;
+`;
+
+const StyledLink = styled(Link)``;
+
+const UtilWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 1.5em;
+
+  ${StyledLink} {
+    margin: 0.25em 0;
   }
 `;

@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <HomeSection>
       <IntroTitle>Beauty from Minimalism</IntroTitle>
-      <LearnMoreLink to={Path.Home}>About Us</LearnMoreLink>
+      <LearnMoreLink to={Path.AboutUs}>About Us</LearnMoreLink>
     </HomeSection>
   );
 }

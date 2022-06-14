@@ -1,28 +1,23 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import { Link, useLocation, NavLink } from "react-router-dom";
+import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
 import { Path } from "../Utils/path";
-import { PageOpenToggleContext } from "../Context/AuthContext";
 import LoginPage from "../Pages/Auth/LoginPage";
 import Modal from "react-modal";
+import { GrClose } from "react-icons/gr";
 
 export default function Navbar() {
-  // Login page open toggle
-  // const { toggleOpen, toggleWindowOpen } = useContext(PageOpenToggleContext);
-  // const handleLoginPageToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault();
-  //   toggleWindowOpen?.();
-  // };
+  // Link font color set to be black if navigating other than Home page
+  let { pathname } = useLocation();
+  const isHome = pathname === Path.Home;
 
-  // Login page open toggle open shit
+  // Login modal page toggle
+  const navigate = useNavigate();
+  console.log(navigate);
   const [toggleModal, setToggleModal] = useState<boolean>(false);
   const handleLoginModal = () => {
     setToggleModal(!toggleModal);
   };
-
-  // Link font color set to be black if navigating other than Home page
-  let { pathname } = useLocation();
-  const isHome = pathname === Path.Home;
 
   return (
     <>
@@ -64,7 +59,10 @@ export default function Navbar() {
           </ul>
         </Nav>
       </Header>
-      <StyledModal isOpen={toggleModal} closeTimeoutMS={2000}>
+      <StyledModal isOpen={toggleModal} closeTimeoutMS={1000}>
+        <CloseModalButton onClick={handleLoginModal}>
+          <GrClose />
+        </CloseModalButton>
         <LoginPage />
       </StyledModal>
     </>
@@ -126,4 +124,14 @@ const LoginLink = styled.button<{ $isHome: boolean }>`
 
 const StyledModal = styled(Modal)`
   background: transparent;
+`;
+
+const CloseModalButton = styled(GrClose)`
+  position: absolute;
+  top: 30%;
+  right: 30%;
+  transform: translate(-30%, -30%);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 100;
 `;
