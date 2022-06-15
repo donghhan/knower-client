@@ -13,4 +13,5 @@ const SectionWrapper = styled.section`
   width: 100%;
   height: fit-content;
   min-height: 100vh;
+  padding-top: 15em;
 `;
