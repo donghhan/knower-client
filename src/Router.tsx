@@ -8,7 +8,8 @@ import MyProfile from "./Pages/User/MyProfile";
 import AboutUsPage from "./Pages/AboutUsPage";
 // Components
 import Layout from "./Components/Layout";
-import Navbar from "./Components/Navbar";
+import Navbar from "./Components/sticky/Navbar";
+import Footer from "./Components/sticky/Footer";
 
 export default function Router() {
   return (
@@ -29,6 +30,7 @@ export default function Router() {
           <Route path="*" element={<Navigate to={Path.Home} replace />} />
         </Route>
       </Routes>
+      <Footer />
     </>
   );
 }

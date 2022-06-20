@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
-import { Path } from "../Utils/path";
-import LoginPage from "../Pages/Auth/LoginPage";
+import { Path } from "../../Utils/path";
+import LoginPage from "../../Pages/Auth/LoginPage";
 import Modal from "react-modal";
 import { GrClose } from "react-icons/gr";
 
@@ -72,12 +72,13 @@ export default function Navbar() {
 // Styles
 const Header = styled.header`
   width: 100%;
-  height: 5rem;
+  height: 8rem;
   padding: 0 2rem;
   font-family: ${(props) => props.theme.fonts};
   position: fixed;
   top: 0;
   left: 0;
+  /* background-color: ${(props) => props.theme.colors.white}; */
 `;
 
 const Nav = styled.nav`
