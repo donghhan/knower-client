@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { TbDots } from "react-icons/tb";
 import Slider from "react-slick";
@@ -47,10 +47,10 @@ export default function HomeBottomSidePage() {
 
 const HomeBottomSidePageSection = styled.aside<OpenSideMenuProps>`
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   background-color: ${(props) => props.theme.colors.white};
   position: fixed;
-  bottom: ${(props) => (props.openSideMenu ? "0" : "-60vh")};
+  bottom: ${(props) => (props.openSideMenu ? "0" : "-70vh")};
   right: 0;
   left: 0;
   overflow-y: hidden;
