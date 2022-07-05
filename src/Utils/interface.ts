@@ -1,5 +1,10 @@
 import React from "react";
 
+// react-slick
+export interface ISlick {
+  settings: {};
+}
+
 export interface IChildren {
   children: React.ReactNode;
 }

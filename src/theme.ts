@@ -1,7 +1,7 @@
 import { DefaultTheme, createGlobalStyle } from "styled-components";
 
 export const theme: DefaultTheme = {
-  fonts: "'Noto Serif KR', serif;",
+  fonts: "'Roboto', sans-serif",
   colors: {
     black: "#000",
     white: "#fff",
@@ -21,7 +21,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   a {
@@ -44,7 +44,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     &::placeholder {
-      font-family: 'Noto Serif KR', serif;
+      font-family: 'Roboto', sans-serif;
     }
   }
 
@@ -56,7 +56,7 @@ export const GlobalStyles = createGlobalStyle`
     background: none;
     border: none;
     cursor: pointer;
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   // Modal animation 

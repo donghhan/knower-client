@@ -2,6 +2,7 @@ import styled from "styled-components";
 import image1 from "../static/images/image1.png";
 import { Link } from "react-router-dom";
 // Components
+import HomeBottomSidePage from "../Components/products/HomeBottomSidePage";
 import { Path } from "../Utils/path";
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
     <HomeSection>
       <IntroTitle>Beauty from Minimalism</IntroTitle>
       <LearnMoreLink to={Path.AboutUs}>About Us</LearnMoreLink>
+      <HomeBottomSidePage />
     </HomeSection>
   );
 }
@@ -19,6 +21,7 @@ const HomeSection = styled.section`
   background-image: url(${image1});
   background-size: cover;
   background-repeat: no-repeat;
+  position: relative;
 `;
 
 const IntroTitle = styled.span`
@@ -60,4 +63,8 @@ const LearnMoreLink = styled(Link)`
     font-size: 0.65rem;
     top: 40%;
   }
+`;
+
+const SidePageSection = styled.div`
+  position: relative;
 `;

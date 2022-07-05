@@ -10,7 +10,7 @@ export default function PageTitle({ title }: IPageTitle) {
       <title>{title} | Knower</title>
       <style>
         @import
-        url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&display=swap');
+        url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
       </style>
     </Helmet>
   );

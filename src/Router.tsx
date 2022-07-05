@@ -30,7 +30,7 @@ export default function Router() {
           <Route path="*" element={<Navigate to={Path.Home} replace />} />
         </Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
