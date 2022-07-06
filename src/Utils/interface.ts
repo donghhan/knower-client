@@ -1,5 +1,9 @@
 import React from "react";
 
+export interface RefProp {
+  ref: React.Ref<HTMLDivElement>;
+}
+
 // react-slick
 export interface ISlick {
   settings: {};

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { TbDots } from "react-icons/tb";
-import Slider from "react-slick";
 import { useQuery } from "react-query";
+// Components
+import LoadingText from "../../LoadingText";
+import GridItem from "./GridItem";
 // Interface
-import { ISlick } from "../../Utils/interface";
+import { ISlick } from "../../../Utils/interface";
 // API
-import { FetchBestsellerItems } from "../../api/api";
+import { FetchBestsellerItems } from "../../../api/api";
 
 interface OpenSideMenuProps {
   openSideMenu: boolean;
@@ -15,15 +17,6 @@ interface OpenSideMenuProps {
 export default function HomeBottomSidePage() {
   const [openSideMenu, setOpenSideMenu] = useState<boolean>(false);
   const { isLoading, data } = useQuery("BestSellerItems", FetchBestsellerItems);
-  console.log(isLoading, data);
-
-  const sliderSettings: {} = {
-    className: "content-grid",
-    infinite: true,
-    centerPadding: "20px",
-    slidesToShow: 5,
-    swipeToSlide: true,
-  };
 
   return (
     <HomeBottomSidePageSection openSideMenu={openSideMenu}>
@@ -39,7 +32,7 @@ export default function HomeBottomSidePage() {
         </button>
       </TitleSection>
       <ContentsSection>
-        <Slider {...sliderSettings}></Slider>
+        {isLoading ? <LoadingText /> : <GridItem fetchedData={data} />}
       </ContentsSection>
     </HomeBottomSidePageSection>
   );
@@ -55,6 +48,7 @@ const HomeBottomSidePageSection = styled.aside<OpenSideMenuProps>`
   left: 0;
   overflow-y: hidden;
   transition: 1.25s;
+  z-index: 900;
 `;
 
 const TitleSection = styled.div`
@@ -75,4 +69,9 @@ const TitleSection = styled.div`
   }
 `;
 
-const ContentsSection = styled.div``;
+const ContentsSection = styled.div`
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
