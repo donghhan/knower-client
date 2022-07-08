@@ -18,7 +18,7 @@ export default function GridItem({ fetchedData }: IGridItem) {
 
   return (
     <GridSection ref={imageCarousel}>
-      <GridWrapper drag="x" dragConstraints={{ right: 0 }}>
+      <GridWrapper drag="x" dragConstraints={{ right: 0, left: -width }}>
         {fetchedData?.slice(0, 10).map((item) => (
           <GridItems key={item.id}>
             <img src={item.thumbnailUrl} alt="bottom-grid-thumbnails" />
@@ -36,7 +36,6 @@ const GridSection = styled(motion.div)`
   display: flex;
   cursor: grab;
   padding: 0 1%;
-  background-color: crimson;
   overflow: hidden;
 `;
 
@@ -44,7 +43,6 @@ const GridWrapper = styled(motion.div)`
   display: flex;
   gap: 1em;
   justify-content: flex-start;
-  background-color: lightblue;
 `;
 
 const GridItems = styled(motion.div)`
@@ -55,6 +53,18 @@ const GridItems = styled(motion.div)`
     min-width: 300px;
     margin-bottom: 1em;
     pointer-events: none;
+  }
+
+  &:nth-child(2n) {
+    img {
+      min-height: 300px;
+    }
+  }
+
+  &:nth-child(2n + 1) {
+    img {
+      min-height: 400px;
+    }
   }
 
   span {
