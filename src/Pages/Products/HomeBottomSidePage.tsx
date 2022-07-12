@@ -3,12 +3,10 @@ import styled from "styled-components";
 import { TbDots } from "react-icons/tb";
 import { useQuery } from "react-query";
 // Components
-import LoadingText from "../../LoadingText";
-import GridItem from "./GridItem";
-// Interface
-import { ISlick } from "../../../Utils/interface";
+import LoadingText from "../../Components/LoadingText";
+import GridItem from "../../Components/products/HomeBottomSideMenu/GridItem";
 // API
-import { FetchBestsellerItems } from "../../../api/api";
+import { FetchBestsellerItems } from "../../api/api";
 
 interface OpenSideMenuProps {
   openSideMenu: boolean;

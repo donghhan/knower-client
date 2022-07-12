@@ -5,11 +5,12 @@ export const theme: DefaultTheme = {
   colors: {
     black: "#000",
     white: "#fff",
+    gray: "#333",
   },
   responsive: {
-    mobile: "(max-width: 375px)",
-    tablet: "(min-width: 376px) and (max-width: 1024px)",
-    desktop: "(min-width: 1025px)",
+    mobile: "@media screen and (max-width: 375px)",
+    tablet: "@media screen and (min-width: 376px) and (max-width: 1024px)",
+    desktop: "@media screen and (min-width: 1025px)",
   },
 };
 

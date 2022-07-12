@@ -2,7 +2,7 @@ import styled from "styled-components";
 import image1 from "../static/images/image1.png";
 import { Link } from "react-router-dom";
 // Components
-import HomeBottomSidePage from "../Components/products/HomeBottomSideMenu/SidePage";
+import HomeBottomSidePage from "./Products/HomeBottomSidePage";
 import { Path } from "../Utils/path";
 
 export default function Home() {

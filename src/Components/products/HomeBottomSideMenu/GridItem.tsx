@@ -37,12 +37,21 @@ const GridSection = styled(motion.div)`
   cursor: grab;
   padding: 0 1%;
   overflow: hidden;
+
+  @media scren and (max-width: 480px) {
+    overflow: visible;
+  }
 `;
 
 const GridWrapper = styled(motion.div)`
   display: flex;
   gap: 1em;
   justify-content: flex-start;
+
+  @media screen and (max-width: 480px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 const GridItems = styled(motion.div)`
@@ -50,7 +59,7 @@ const GridItems = styled(motion.div)`
   flex-direction: column;
 
   img {
-    min-width: 300px;
+    min-width: 100%;
     margin-bottom: 1em;
     pointer-events: none;
   }
@@ -69,5 +78,35 @@ const GridItems = styled(motion.div)`
 
   span {
     font-size: 0.9rem;
+  }
+
+  @media screen and (min-width: 481px) and (max-width: 1024px) {
+    img {
+      max-width: 200px;
+    }
+
+    &:nth-child(2n) {
+      img {
+        max-height: 200px;
+      }
+    }
+
+    &:nth-child(2n + 1) {
+      img {
+        max-height: 250px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    img {
+      max-width: 100%;
+    }
+
+    &:nth-child(2n) {
+      img {
+        max-height: 100px;
+      }
+    }
   }
 `;

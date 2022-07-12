@@ -6,6 +6,7 @@ declare module "styled-components" {
     colors: {
       black: string;
       white: string;
+      gray: string;
     };
     responsive: {
       mobile: string;

@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useLocation, NavLink, useNavigate } from "react-router-dom";
 import { Path } from "../../Utils/path";
-import LoginPage from "../../Pages/Auth/LoginPage";
+import CatalogChoicePage from "../../Pages/Products/CatalogChoicePage";
 import Modal from "react-modal";
 import { GrClose } from "react-icons/gr";
 
@@ -11,11 +11,9 @@ export default function Navbar() {
   let { pathname } = useLocation();
   const isHome = pathname === Path.Home;
 
-  // Login modal page toggle
-  const navigate = useNavigate();
-  console.log(navigate);
+  // Modal page toggle
   const [toggleModal, setToggleModal] = useState<boolean>(false);
-  const handleLoginModal = () => {
+  const handleModal = () => {
     setToggleModal(!toggleModal);
   };
 
@@ -28,7 +26,11 @@ export default function Navbar() {
           </Logo>
           <ul className="shopping-menu">
             <li>
-              <Menu to={Path.ProductByCategory} $isHome={isHome}>
+              <Menu
+                to={Path.ProductByCategory}
+                $isHome={isHome}
+                onClick={handleModal}
+              >
                 Catalog
               </Menu>
             </li>
@@ -42,10 +44,15 @@ export default function Navbar() {
                 Sale
               </Menu>
             </li>
+            <li>
+              <Menu to={Path.ProductByCategory} $isHome={isHome}>
+                Best Seller
+              </Menu>
+            </li>
           </ul>
           <ul>
             <li>
-              <LoginLink $isHome={isHome} onClick={handleLoginModal}>
+              <LoginLink $isHome={isHome} to={Path.Login}>
                 Login
               </LoginLink>
             </li>
@@ -60,10 +67,10 @@ export default function Navbar() {
         </Nav>
       </Header>
       <StyledModal isOpen={toggleModal} closeTimeoutMS={1000}>
-        <CloseModalButton onClick={handleLoginModal}>
+        <CloseModalButton onClick={handleModal}>
           <GrClose />
         </CloseModalButton>
-        <LoginPage />
+        <CatalogChoicePage />
       </StyledModal>
     </>
   );
@@ -119,13 +126,14 @@ const Menu = styled(NavLink)<{ $isHome: boolean }>`
     props.$isHome ? props.theme.colors.white : props.theme.colors.black};
 `;
 
-const LoginLink = styled.button<{ $isHome: boolean }>`
+const LoginLink = styled(Link)<{ $isHome: boolean }>`
   color: ${(props) =>
     props.$isHome ? props.theme.colors.white : props.theme.colors.black};
 `;
 
 const StyledModal = styled(Modal)`
   background: transparent;
+  z-index: 2000;
 `;
 
 const CloseModalButton = styled(GrClose)`

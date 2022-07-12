@@ -1,13 +1,13 @@
 import React from "react";
 
+export interface IModal {
+  isModalOpen: boolean;
+}
 export interface RefProp {
   ref: React.Ref<HTMLDivElement>;
 }
 
 // react-slick
-export interface ISlick {
-  settings: {};
-}
 
 export interface IChildren {
   children: React.ReactNode;
