@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { FieldErrors, useForm } from "react-hook-form";
 import { Path } from "../../Utils/path";
 import styled from "styled-components";
-import Container from "../../Components/auth/Container";
 import { ILoginForm } from "../../Utils/interface";
 
 interface ILoginPage {

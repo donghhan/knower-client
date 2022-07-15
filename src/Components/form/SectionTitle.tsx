@@ -16,6 +16,7 @@ const SectionTitleWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 3em;
 `;
 
 const TitleText = styled.h1`

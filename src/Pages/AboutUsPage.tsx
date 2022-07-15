@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import InnerSection from "../Components/InnerSection";
-import SectionTitle from "../Components/SectionTitle";
+import SectionTitle from "../Components/form/SectionTitle";
 import aboutUsImage from "../static/images/about_us.png";
 
 export default function AboutUsPage() {
