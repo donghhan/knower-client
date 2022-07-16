@@ -21,8 +21,16 @@ export default function Signup() {
         <InputBox label="email*" type="email" />
         <InputBox label="password*" type="password" />
         <InputBox label="confirm password*" type="password" />
-        <InputBox label="home phone" type="text" />
-        <InputBox label="mobile phone*" type="text" />
+        <InputBox
+          label="home phone"
+          type="text"
+          placeholder="-는 빼고 적어주세요."
+        />
+        <InputBox
+          label="mobile phone*"
+          type="text"
+          placeholder="-는 빼고 적어주세요."
+        />
         <FormButton buttonText="Signup" />
       </FormBox>
     </InnerSection>

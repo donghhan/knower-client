@@ -1,18 +1,29 @@
 import styled from "styled-components";
-import { IModal } from "../../Utils/interface";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 import { Path } from "../../Utils/path";
+import { FetchCategories } from "../../api/api";
 
 export default function CatalogChoicePage() {
+  const { isLoading, data: categoriesData } = useQuery(
+    "categories",
+    FetchCategories
+  );
+
+  if (isLoading) {
+    return <CatalogChoiceSection>Loading...</CatalogChoiceSection>;
+  }
+
   return (
     <CatalogChoiceSection>
       <ul>
-        <li>
-          <StyledCatalogLink to={Path.Home}>Tops</StyledCatalogLink>
-        </li>
-        <li>
-          <StyledCatalogLink to={Path.Home}>Bottom</StyledCatalogLink>
-        </li>
+        {categoriesData?.results?.map((category) => (
+          <li key={category.id}>
+            <StyledCatalogLink to={Path.Home}>
+              {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+            </StyledCatalogLink>
+          </li>
+        ))}
       </ul>
     </CatalogChoiceSection>
   );
@@ -24,6 +35,7 @@ const CatalogChoiceSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3000;
 
   ul {
     text-align: center;
@@ -32,5 +44,9 @@ const CatalogChoiceSection = styled.section`
 `;
 
 const StyledCatalogLink = styled(Link)`
-  color: ${(props) => props.theme.colors.gray};
+  color: ${(props) => props.theme.colors.lightgray};
+
+  &:hover {
+    color: ${(props) => props.theme.colors.gray};
+  }
 `;

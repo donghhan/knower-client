@@ -20,5 +20,6 @@ const SectionTitleWrapper = styled.div`
 `;
 
 const TitleText = styled.h1`
-  font-size: 5rem;
+  font-size: 2.5rem;
+  margin-bottom: 1em;
 `;

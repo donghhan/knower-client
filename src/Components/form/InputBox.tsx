@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
 
-interface IInputLabel {
+interface IInputBox {
   label: string;
   type: string;
+  placeholder?: string;
 }
 
-export default function InputBox({ label, type }: IInputLabel) {
+export default function InputBox({ label, type, placeholder }: IInputBox) {
   const { register } = useForm();
 
   switch (type) {
@@ -24,6 +25,7 @@ export default function InputBox({ label, type }: IInputLabel) {
                 message: "올바른 형식의 이메일 주소를 입력해 주세요.",
               },
             })}
+            placeholder={placeholder}
           />
         </InputWrapper>
       );
@@ -42,6 +44,7 @@ export default function InputBox({ label, type }: IInputLabel) {
                   "비밀번호는 8자~16자이어야 하며, 소문자 및 숫자를 최소 1개씩 포함해야 합니다.",
               },
             })}
+            placeholder={placeholder}
           />
         </InputWrapper>
       );
@@ -55,6 +58,7 @@ export default function InputBox({ label, type }: IInputLabel) {
             {...register(type, {
               required: true,
             })}
+            placeholder={placeholder}
           />
         </InputWrapper>
       );
@@ -69,9 +73,11 @@ const InputWrapper = styled.div`
   label {
     text-transform: uppercase;
     margin-bottom: 1em;
-    font-size: 1.25rem;
   }
 
   input {
+    &:placeholder {
+      font-size: 1rem;
+    }
   }
 `;

@@ -6,6 +6,7 @@ export const theme: DefaultTheme = {
     black: "#000",
     white: "#fff",
     gray: "#333",
+    lightgray: "#777",
   },
   responsive: {
     mobile: "@media screen and (max-width: 375px)",
@@ -39,6 +40,7 @@ export const GlobalStyles = createGlobalStyle`
     border-bottom: 1px solid ${(props) => props.theme.colors.black};
     font-size: 1.25rem;
     background: transparent;
+    padding: .1em;
 
     &:focus {
       outline: none;
@@ -46,6 +48,7 @@ export const GlobalStyles = createGlobalStyle`
 
     &::placeholder {
       font-family: 'Roboto', sans-serif;
+      font-size: .9rem;
     }
   }
 

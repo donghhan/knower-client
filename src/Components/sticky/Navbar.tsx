@@ -26,13 +26,9 @@ export default function Navbar() {
           </Logo>
           <ul className="shopping-menu">
             <li>
-              <Menu
-                to={Path.ProductByCategory}
-                $isHome={isHome}
-                onClick={handleModal}
-              >
+              <CatalogButton $isHome={isHome} onClick={handleModal}>
                 Catalog
-              </Menu>
+              </CatalogButton>
             </li>
             <li>
               <Menu to={Path.ProductByCategory} $isHome={isHome}>
@@ -85,7 +81,7 @@ const Header = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 50;
   /* background-color: ${(props) => props.theme.colors.white}; */
 `;
 
@@ -117,6 +113,11 @@ const Nav = styled.nav`
 
 const Logo = styled(Link)<{ $isHome: boolean }>`
   font-size: 1.5rem;
+  color: ${(props) =>
+    props.$isHome ? props.theme.colors.white : props.theme.colors.black};
+`;
+
+const CatalogButton = styled.button<{ $isHome: boolean }>`
   color: ${(props) =>
     props.$isHome ? props.theme.colors.white : props.theme.colors.black};
 `;
